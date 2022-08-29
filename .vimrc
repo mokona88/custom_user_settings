@@ -4,6 +4,34 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#vcs_priority = ["git"]
 let g:airline#extensions#branch#format = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
+let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\)$'
+let g:vimfiler_as_default_explorer = 1
+
+"----------------------------------------
+" Windows
+"----------------------------------------
+" Split window
+nmap vs :split<Return><C-w>w
+nmap vh :vsplit<Return><C-w>w
+nmap vf :VimFiler<Return>
+nmap gv :GV<Return>
+
+" Move window
+" nmap <Space> <C-w>w
+map s<left> <C-w>h
+map s<up> <C-w>k
+map s<down> <C-w>j
+map s<right> <C-w>l
+map zh <C-w>h
+map zk <C-w>k
+map zj <C-w>j
+map zl <C-w>l
+
+" Resize window
+nmap <C-w><left> <C-w><
+nmap <C-w><right> <C-w>>
+nmap <C-w><up> <C-w>+
+nmap <C-w><down> <C-w>-
 
 " vim-plug plugin
 call plug#begin()
@@ -19,37 +47,40 @@ call plug#begin()
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
   " On-demand loading
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'airblade/vim-gitgutter'
+  " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+  " Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Plug 'airblade/vim-gitgutter'
 
-  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+  " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
   " Using a non-master branch
-  Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+  " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
   " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-  Plug 'fatih/vim-go', { 'tag': 'v1.22' }
+  " Plug 'fatih/vim-go', { 'tag': 'v1.22' }
 
   " Plugin options
-  Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+  " Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
   " Plugin outside ~/.vim/plugged with post-update hook
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
   " Unmanaged plugin (manually installed and updated)
   " Plug '~/my-prototype-plugin'
 
-  Plug 'https://github.com/rakr/vim-one.git'
-
-  Plug 'scrooloose/nerdtree'
+  " Theme pluggins
+"  Plug 'https://github.com/rakr/vim-one.git'
+  Plug 'https://github.com/joshdick/onedark.vim.git'
 
   " Lean & mean status / Tabline for vim
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
 
-  Plug 'yuratomo/w3m.vim'
+  " Git commit browser
+  Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+
+  " Plug 'yuratomo/w3m.vim'
 
   " Terminal plugins for vim
   Plug 'tc50cal/vim-terminal'
@@ -61,15 +92,20 @@ call plug#begin()
   Plug 'mattn/emmet-vim'
 
   " Typescript syntax highlighting for vim
-  Plug 'leafgarland/typescript-vim'
+  " Plug 'leafgarland/typescript-vim'
   " JSX extension for syntax highlighting
   Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'pangloss/vim-javascript'
 
   " View Image in NVIM
   " Plug 'ashisha/image.vim'
   
   " Downgrade a plugin
-  Plug 'SirVer/ultisnips', { 'tag': '3.0' }
+  " Plug 'SirVer/ultisnips', { 'tag': '3.0' }
+
+  " File manager
+  Plug 'shougo/unite.vim'
+  Plug 'shougo/vimfiler.vim'
 call plug#end()
 " set background=dark
 " set t_Co=256
@@ -82,12 +118,44 @@ let g:split_term_default_shell = "zsh"
 let g:vim_jsx_pretty_highlight_close_tag = 1
 let g:vim_jsx_pretty_colorful_config = 1
 
+" Configuration for vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+" set folding
+augroup javascript_folding
+  au!
+  au FileType javacript setlocal foldmethod=syntax
+augroup END
+
+set foldmethod=syntax
+set foldcolumn=1
+let javscript_fold=1
+set foldlevelstart=10
+
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+let g:javascript_conceal_noarg_arrow_function = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+" set conceallevel = 1
+map <leader>l :exec &conceallevel ? 'set conceallevel=0' : 'set conceallevel=1'<CR>
+
 " Clear search when input nothing
 let @/=""
 
 " Configuration for NERDTree
-let NERDTreeWinSize=50
-let NERDTreeWinSizeMax=50
+" let NERDTreeWinSize=50
+" let NERDTreeWinSizeMax=50
 
 set number
 set nowrap
@@ -117,7 +185,7 @@ syntax on
 colorscheme onedark
 
 autocmd BufEnter *.png,*.jpg,*gif exec "! ~/.iterm2/imgcat -p \"".expand("%").expand("\"") | :bw
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 
 " Mapping commands
 command! Term :Terminal zsh
@@ -127,4 +195,5 @@ command! Hterm :TerminalSplit zsh
 "cabbrev :vterm :TerminalVSplit "zsh"
 "cabbrev :hterm :TerminalSplit "zsh"
 
+" nnoremap <C-f> :NERDTreeFind<CR>
 
