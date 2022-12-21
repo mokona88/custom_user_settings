@@ -10,6 +10,16 @@ let g:vimfiler_as_default_explorer = 1
 "----------------------------------------
 " Windows
 "----------------------------------------
+
+" Tabs
+nmap te :tabedit<Return>
+" List tabs
+nmap tl :Unite tab
+" Operating with tabs
+nmap <S-Tab> :tabprev<Return>
+nmap <Tab> :tabnext<Return>
+nnoremap ,l <C-I>
+
 " Split window
 nmap vs :split<Return><C-w>w
 nmap vh :vsplit<Return><C-w>w
