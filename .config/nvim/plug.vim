@@ -9,7 +9,7 @@ call plug#begin()
   Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
   " Multiple Plug commands can be written in a single line using | separators
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
   " On-demand loading
   " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -33,8 +33,12 @@ call plug#begin()
   " Unmanaged plugin (manually installed and updated)
   " Plug '~/my-prototype-plugin'
 
+  "Code suggestion
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
   " Theme pluggins
-"  Plug 'https://github.com/rakr/vim-one.git'
+  "  Plug 'https://github.com/rakr/vim-one.git'
   Plug 'https://github.com/joshdick/onedark.vim.git'
 
   " Lean & mean status / Tabline for vim
@@ -69,12 +73,27 @@ call plug#begin()
   " Plug 'SirVer/ultisnips', { 'tag': '3.0' }
 
   " File manager
-  Plug 'shougo/unite.vim'
-  Plug 'shougo/vimfiler.vim'
+  " Plug 'shougo/unite.vim'
+  " Plug 'shougo/vimfiler.vim'
+
+  " Plugins for syntax enabling based on file type
+  Plug 'elzr/vim-json', { 'for': 'json' }
+  Plug 'groenewege/vim-less', { 'for': 'less' }
+  Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+  Plug 'keith/swift.vim', { 'for': 'swift' }
+  Plug 'windwp/nvim-autopairs'
 
 
   if has("nvim")
+    " Language parser
     Plug 'neovim/nvim-lspconfig'
+
+    " File manager
+    Plug 'shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'shougo/defx.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
 call plug#end()
 

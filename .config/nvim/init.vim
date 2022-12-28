@@ -4,8 +4,10 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#vcs_priority = ["git"]
 let g:airline#extensions#branch#format = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
-let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\)$'
-let g:vimfiler_as_default_explorer = 1
+
+" Settings for vimfiler
+" let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\)$'
+" let g:vimfiler_as_default_explorer = 1
 
 "----------------------------------------
 " Windows
