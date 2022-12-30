@@ -99,13 +99,28 @@ map <leader>l :exec &conceallevel ? 'set conceallevel=0' : 'set conceallevel=1'<
 " Clear search when input nothing
 let @/=""
 
+set autoindent
+set background=dark
+set backupskip=/tmp/*,/private/tmp/*
+set cmdheight=1
+set encoding=utf-8
+set expandtab
+set fileencodings=utf-8,sjis,euc-jp,latin
+set hlsearch
+set laststatus=2
+set nocompatible
 set number
+set nobackup
 set nowrap
 set path+=**
-set expandtab
+set scrolloff=10
+set showcmd
 set tabstop=2
+set title
+set shell=zsh
 set shiftwidth=2
 
+syntax enable
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support

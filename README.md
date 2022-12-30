@@ -13,3 +13,13 @@ for personal use
 4. Install fzf (lazy searching)
 5. Install vim plugins.
 6. Checkout vimrc for complete list of vimplug plugins
+
+# Nvim installation instructions - using Vim Plug & Vimscript
+
+# Nvim installation instructions - using Packer & Lua version
+1. Install neovim
+2. Install packer
+    - `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
+3. Copy content of `nvim_lua` config to `~/.config/nvim/`
+4. Install packages using `:PackInstall`
+5. Run `:Mason` to check for language server installation
