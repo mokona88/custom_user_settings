@@ -17,9 +17,11 @@ for personal use
 # Nvim installation instructions - using Vim Plug & Vimscript
 
 # Nvim installation instructions - using Packer & Lua version
-1. Install neovim
-2. Install packer
+1. Install neovim.
+2. Install packer.
     - `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
-3. Copy content of `nvim_lua` config to `~/.config/nvim/`
-4. Install packages using `:PackInstall`
-5. Run `:Mason` to check for language server installation
+3. Copy content of `nvim_lua` config to `~/.config/nvim/`.
+4. Install packages using `:PackInstall`.
+5. Run `:Mason` to check for language server installation.
+
+Note: typescript-language-server, tailwindcss-language-servers requires Node version >= 14 in order to operate 
