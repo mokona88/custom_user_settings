@@ -1,5 +1,5 @@
-local status, _ = pcall(vim.cmd, 'colorscheme NeoSolarized')
--- local status, _ = pcall(vim.cmd, 'colorscheme nightfly')
+-- local status, _ = pcall(vim.cmd, 'colorscheme NeoSolarized')
+local status, _ = pcall(vim.cmd, 'colorscheme nightfly')
 
 if not status then
   print('Colorscheme nightfly not found!')

@@ -5,6 +5,7 @@ if not saga_status then
 end
 
 saga.init_lsp_saga({
+  -- navigation in lspsaga window
   move_in_saga = { prev = '<C-k>', next = '<C-j>' },
   finder_action_keys = {
     open = '<cr>',

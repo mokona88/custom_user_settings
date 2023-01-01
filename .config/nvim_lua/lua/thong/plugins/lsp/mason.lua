@@ -6,7 +6,7 @@ end
 
 local ms_lspconfig_status, mason_lspconfig = pcall(require, 'mason-lspconfig')
 if not ms_lspconfig_status then
-  print('mason_lspconfig is not installed!')
+  print('mason-lspconfig is not installed!')
   return
 end
 
@@ -19,17 +19,24 @@ end
 mason.setup()
 
 mason_lspconfig.setup({
+  -- list of servers for mason to install
   ensure_installed = {
     'tsserver',
     'html',
     'cssls',
     'tailwindcss',
     'sumneko_lua',
-  }
+    'emmet_ls',
+  },
+  -- auto-install configured servers (with lspconfig)
+  automatic_installation = true
 })
 
 mason_null_ls.setup({
+  -- list of formatters & linters for mason to install
   ensure_installed = {
     'prettier', 'stylua', 'eslint_d'
-  }
+  },
+  -- auto install configured formatters & linters (with null-ls)
+  automatic_installation = true,
 })

@@ -48,7 +48,8 @@ telescope.setup({
           ['h'] = fb_actions.goto_parent_dir,
           ['/'] = function ()
             vim.cmd('startinsert')
-          end
+          end,
+          ['.'] = fb_actions.toggle_hidden,
         }
       }
     }
@@ -63,7 +64,7 @@ vim.keymap.set("n", "sf", function()
     path = path,
     cwd = vim.fn.expand(path),
     respect_gitignore = false,
-    hidden = true,
+    -- hidden = true,
     grouped = true,
     previewer = false,
     initial_mode = 'normal',

@@ -18,11 +18,10 @@ end
 
 local keymap = vim.keymap
 
--- enable keybinds for available lsp server
+-- enable keybinds only when lsp server is available
 local on_attach = function(client, bufnr)
-  local opts = {
-    noremap = true, silent = true, buffer = bufnr
-  }
+  -- keybind options
+  local opts = { noremap = true, silent = true, buffer = bufnr }
 
   -- set keybinds
   keymap.set('n', 'gf', '<cmd>Lspsaga lsp_finder<cr>', opts)
@@ -31,7 +30,7 @@ local on_attach = function(client, bufnr)
   keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
   keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<cr>', opts)
   keymap.set('n', '<leader>rn', '<cmd>Lspsaga rename<cr>', opts)
-  keymap.set('n', '<leader>d', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
+  keymap.set('n', '<leader>D', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
   keymap.set('n', '<leader>d', '<cmd>Lspsaga show_cursor_diagnostics<cr>', opts)
   keymap.set('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', opts)
   keymap.set('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', opts)
@@ -40,17 +39,28 @@ local on_attach = function(client, bufnr)
 
   if client.name == 'tsserver' then
     keymap.set('n', '<leader>rf', ':TypescriptRenameFile<cr>')
+    keymap.set('n', '<leader>oi', ':TypescriptOrganizeImports<cr>')
+    keymap.set('n', '<leader>oi', ':TypescriptRemoveUnused<cr>')
   end
 end
 
 -- used to enable autocompletion for each of lsp server
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+-- Change the Diagnostic symbols in the sign column (gutter)
+local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- configure html server
 lspconfig['html'].setup({
   capabilities = capabilities,
-  on_attach = on_attach
+  on_attach = on_attach,
 })
 
+-- configure typescript server
 typescript.setup({
   server = {
     capabilities = capabilities,
@@ -58,16 +68,26 @@ typescript.setup({
   }
 })
 
+-- configure css server
 lspconfig['cssls'].setup({
   capabilities = capabilities,
-  on_attach = on_attach
+  on_attach = on_attach,
 })
 
+-- configure tailwindcss server
 lspconfig['tailwindcss'].setup({
   capabilities = capabilities,
-  on_attach = on_attach
+  on_attach = on_attach,
 })
 
+-- configure emmet language server
+lspconfig['emmet_ls'].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
+})
+
+-- configure lua server (with custom settings)
 lspconfig['sumneko_lua'].setup({
   capabilities = capabilities,
   on_attach = on_attach,
@@ -83,5 +103,5 @@ lspconfig['sumneko_lua'].setup({
         },
       },
     },
-  }
+  },
 })
