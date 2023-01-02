@@ -25,3 +25,4 @@ for personal use
 5. Run `:Mason` to check for language server installation.
 
 Note: typescript-language-server, tailwindcss-language-servers requires Node version >= 14 in order to operate 
+For setting up Java dev environment, would need Java 17 or newer if using lsp_jdtls
