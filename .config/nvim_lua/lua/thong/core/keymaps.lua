@@ -22,6 +22,8 @@ keymap.set('n', 'tx', ':tabclose<CR>') -- close current tab
 keymap.set('n', '<Tab>', ':tabn<CR>') -- go to next tab, or :tabnext
 keymap.set('n', '<S-Tab>', ':tabp<CR>') -- go to previous tab, or :tabprev
 
+keymap.set('n', 'fp', '<cmd>echo expand(\'%:p\')<cr>')
+
 -- plugin keymap
 
 -- vim-maximizer
