@@ -24,5 +24,17 @@ for personal use
 4. Install packages using `:PackInstall`.
 5. Run `:Mason` to check for language server installation.
 
+-- Setup for Java development
+
+6. Clone `java-debug` and `vscode-java-test` to `~/.config/nvim` folder.
+    ```
+    git clone git@github.com:microsoft/java-debug.git
+    git clone git@github.com:microsoft/vscode-java-test.git
+    cd java-debug
+    ./mvnw clean install
+    cd ../vscode-java-test
+    npm i && npm run build-plugin
+    ```
+7. Create folder `ftplugin` under `~/.config/nvim` folder
 Note: typescript-language-server, tailwindcss-language-servers requires Node version >= 14 in order to operate 
 For setting up Java dev environment, would need Java 17 or newer if using lsp_jdtls

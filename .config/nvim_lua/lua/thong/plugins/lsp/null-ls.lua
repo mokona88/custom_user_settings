@@ -11,7 +11,9 @@ null_ls.setup({
   sources = {
     formatting.prettier,
     formatting.stylua,
-    diagnostics.eslint_d
+    -- formatting.goggle_java_format,
+    diagnostics.eslint_d,
+    -- diagnostics.flake8,
   },
   on_attach = function (current_client, bufnr)
     if current_client.supports_method('textDocument/formatting') then

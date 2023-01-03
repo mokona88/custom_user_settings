@@ -102,6 +102,8 @@ return packer.startup(function(use)
   --------------------------------------
   use 'lewis6991/gitsigns.nvim'
 
+  -- Java language support
+  use 'mfussenegger/nvim-jdtls'
 
   if packer_bootstrap then
     print('packer_bootstrap is true')
