@@ -19,8 +19,10 @@ keymap.set('n', 'vx', ':close<CR>')
 
 keymap.set('n', 'te', ':tabnew<CR>') -- open new tab, same idea with :tabedit
 keymap.set('n', 'tx', ':tabclose<CR>') -- close current tab
-keymap.set('n', '<Tab>', ':tabn<CR>') -- go to next tab, or :tabnext
-keymap.set('n', '<S-Tab>', ':tabp<CR>') -- go to previous tab, or :tabprev
+keymap.set('n', 'tn', ':tabn<CR>') -- go to next tab, or :tabnext
+keymap.set('n', 'tp', ':tabp<CR>') -- go to previous tab, or :tabprev
+-- keymap.set('n', '<Tab>', ':tabn<CR>') -- go to next tab, or :tabnext
+-- keymap.set('n', '<S-Tab>', ':tabp<CR>') -- go to previous tab, or :tabprev
 
 keymap.set('n', 'fp', '<cmd>echo expand(\'%:p\')<cr>')
 
