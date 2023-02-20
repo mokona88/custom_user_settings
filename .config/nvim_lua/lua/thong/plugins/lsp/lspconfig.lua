@@ -29,6 +29,7 @@ local on_attach = function(client, bufnr)
   keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
   keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<cr>', opts)
   keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+  keymap.set('n', 'gl', '<cmd>Lspsaga show_diagnostic<cr>', opts)
   keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<cr>', opts)
   keymap.set('n', '<leader>rn', '<cmd>Lspsaga rename<cr>', opts)
   keymap.set('n', '<leader>D', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
@@ -89,7 +90,7 @@ lspconfig['tailwindcss'].setup({
 lspconfig['emmet_ls'].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte', 'xml' },
 })
 
 -- configure lua server (with custom settings)

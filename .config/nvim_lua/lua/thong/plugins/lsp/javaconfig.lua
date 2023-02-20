@@ -105,13 +105,15 @@ local function lsp_keymaps(bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+JAVA_DAP_ACTIVE = true
+
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   attach_navic(client, bufnr)
 
-  if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(client, bufnr)
-  end
+  -- if client.name == "tsserver" then
+  --   require("lsp-inlayhints").on_attach(client, bufnr)
+  -- end
 
   if client.name == "jdt.ls" then
     vim.lsp.codelens.refresh()

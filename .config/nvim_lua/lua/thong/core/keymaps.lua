@@ -12,8 +12,11 @@ keymap.set('n', 'x', '"_x') -- delete a character without saving a backup in mem
 keymap.set('n', '<leader>=', '<C-a>') -- increment/decrement numbers
 keymap.set('n', '<leader>-', '<C-x>') -- increment/decrement numbers
 
-keymap.set('n', 'vh', ':vsplit<Return><C-w>w')
-keymap.set('n', 'vs', ':split<Return><C-w>w')
+keymap.set('n', 'md', ':m+<cr>') -- move current line down 1 line
+keymap.set('n', 'mu', ':m-2<cr>') -- move current line up 1 line
+
+keymap.set('n', 'vh', ':vsplit<cr>')
+keymap.set('n', 'vs', ':split<cr>')
 keymap.set('n', 'v=', '<C-w>=') -- make split window equal width
 keymap.set('n', 'vx', ':close<CR>')
 
@@ -23,6 +26,8 @@ keymap.set('n', 'tn', ':tabn<CR>') -- go to next tab, or :tabnext
 keymap.set('n', 'tp', ':tabp<CR>') -- go to previous tab, or :tabprev
 -- keymap.set('n', '<Tab>', ':tabn<CR>') -- go to next tab, or :tabnext
 -- keymap.set('n', '<S-Tab>', ':tabp<CR>') -- go to previous tab, or :tabprev
+
+keymap.set('n', 'fs', ':w<cr>')
 
 keymap.set('n', 'fp', '<cmd>echo expand(\'%:p\')<cr>')
 
