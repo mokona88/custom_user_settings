@@ -44,14 +44,22 @@ return packer.startup(function(use)
   -- commenting with gc
   use('numToStr/Comment.nvim')
 
-  -- file explorer
-  -- use('nvim-tree/nvim-tree.lua')
-
   -- icons
-  use('kyazdani42/nvim-web-devicons')
+  -- use('nvim-tree/nvim-web-devicons')
+
+  -- file explorer
+  use{ 'nvim-tree/nvim-tree.lua', requires = {
+    'nvim-tree/nvim-web-devicons'
+  }, tag = 'nightly' }
 
   -- status-line
   use('nvim-lualine/lualine.nvim')
+
+  -- tab-line
+  use{'romgrk/barbar.nvim', requires = {
+    'nvim-tree/nvim-web-devicons',
+    'lewis6991/gitsigns.nvim'
+  }}
 
   -- fuzzy finding
   use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
@@ -59,7 +67,7 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
 
   -- autocompletion
-  use('hrsh7th/nvim-cmp')
+  use({'hrsh7th/nvim-cmp', tag = 'v0.0.1'})
   use('hrsh7th/cmp-buffer')
   use('hrsh7th/cmp-path')
 
@@ -69,19 +77,24 @@ return packer.startup(function(use)
   use('rafamadriz/friendly-snippets')
 
   -- managing & installing lsp servers
-  use('williamboman/mason.nvim')
-  use('williamboman/mason-lspconfig.nvim')
+  use{'williamboman/mason-lspconfig.nvim', branch = 'main', requires = {
+    'williamboman/mason.nvim',
+    'neovim/nvim-lspconfig',
+  }}
 
   -- configuring lsp servers
-  use('neovim/nvim-lspconfig')
+  -- use('neovim/nvim-lspconfig')
   use('hrsh7th/cmp-nvim-lsp')
-  use({ 'glepnir/lspsaga.nvim', branch = 'main'})
+  use({ 'glepnir/lspsaga.nvim', branch = 'main', commit = '1e1d2dd66f040a11032ab65a1c69d272cedb4cb5'})
   use 'jose-elias-alvarez/typescript.nvim'
   use 'onsails/lspkind.nvim'
 
   -- formatting and linting
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jayp0521/mason-null-ls.nvim'
+  use{'jay-babu/mason-null-ls.nvim', requires = {
+    'jose-elias-alvarez/null-ls.nvim',
+    'williamboman/mason.nvim',
+    'nvimtools/none-ls.nvim'
+  }}
 
   --------------------------------------
   -- treesitter for better highlighting
@@ -104,6 +117,21 @@ return packer.startup(function(use)
 
   -- Java language support
   use 'mfussenegger/nvim-jdtls'
+  -- dev environment support
+  use 'ellisonleao/dotenv.nvim'
+
+  --------------------------------------
+  -- database plugins
+  --------------------------------------
+  use{'kristijanhusak/vim-dadbod-ui', requires = {
+    'tpope/vim-dadbod',
+    'kristijanhusak/vim-dadbod-completion'
+  }}
+
+  --------------------------------------
+  -- github copilot
+  --------------------------------------
+  use{'github/copilot.vim', branch = 'release' }
 
   if packer_bootstrap then
     print('packer_bootstrap is true')

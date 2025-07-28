@@ -29,8 +29,13 @@ telescope.setup({
   pickers = {
     find_files = {
       hidden = true,
-      file_ignore_patterns = {'.git/', 'node_modules/'}
+      file_ignore_patterns = {'.git/', 'node_modules/', '$lock'}
     }
+  },
+  file_ignore_patterns = {
+    -- 'node_modules',
+    -- 'node_modules/',
+    '$lock'
   },
   extensions = {
     file_browser = {
@@ -50,6 +55,8 @@ telescope.setup({
             vim.cmd('startinsert')
           end,
           ['.'] = fb_actions.toggle_hidden,
+          ['<C-u>'] = actions.results_scrolling_up,
+          ['<C-d>'] = actions.results_scrolling_down
         }
       }
     }

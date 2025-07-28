@@ -13,6 +13,13 @@ opt.autoindent = true
 
 -- line wrapping
 opt.wrap = false
+-- code folding
+opt.foldmethod = "manual"
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.nofoldenable = true
+opt.foldlevel = 2
+opt.foldnestmax = 10
 
 -- search settings
 opt.ignorecase = true
@@ -35,5 +42,5 @@ opt.splitbelow = true
 
 opt.iskeyword:append { '-' }
 
-
+opt.autoread = true
 

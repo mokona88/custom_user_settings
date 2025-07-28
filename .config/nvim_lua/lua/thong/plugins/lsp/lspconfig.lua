@@ -1,21 +1,21 @@
-local lspconfig_status, lspconfig = pcall(require, 'lspconfig')
+local lspconfig_status, lspconfig = pcall(require, 'mason-lspconfig')
 local filetype                    = require('vim.filetype')
 if not lspconfig_status then
   print('lspconfig not installed!')
   return
 end
 
-local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, 'cmp-nvim-lsp')
 if not cmp_nvim_lsp_status then
-  print('cmp_nvim_lsp not installed!')
+  print('cmp-nvim-lsp not installed!')
   return
 end
 
-local typescript_setup, typescript = pcall(require, 'typescript')
-if not typescript_setup then
-  print('typescript not installed!')
-  return
-end
+-- local typescript_setup, typescript = pcall(require, 'typescript')
+-- if not typescript_setup then
+--   print('typescript not installed!')
+--   return
+-- end
 
 local keymap = vim.keymap
 
@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
 
   -- set keybinds
   keymap.set('n', 'gf', '<cmd>Lspsaga lsp_finder<cr>', opts)
-  keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+  keymap.set('n', 'gD', '<cmd>vsplit<cr><cmd>Lspsaga goto_definition<cr>', opts)
   keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<cr>', opts)
   keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
   keymap.set('n', 'gl', '<cmd>Lspsaga show_diagnostic<cr>', opts)
@@ -39,7 +39,7 @@ local on_attach = function(client, bufnr)
   keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
   keymap.set('n', '<leader>o', '<cmd>Lspsaga outline<cr>', opts)
 
-  if client.name == 'tsserver' then
+  if client.name == 'ts_ls' then
     keymap.set('n', '<leader>rf', ':TypescriptRenameFile<cr>')
     keymap.set('n', '<leader>oi', ':TypescriptOrganizeImports<cr>')
     keymap.set('n', '<leader>oi', ':TypescriptRemoveUnused<cr>')
@@ -61,56 +61,57 @@ for type, icon in pairs(signs) do
 end
 
 -- configure html server
-lspconfig['html'].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
+-- lspconfig['html'].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- })
 
 -- configure typescript server
-typescript.setup({
-  server = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  }
-})
+-- typescript.setup({
+--   server = {
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+--   }
+-- })
 
 -- configure css server
-lspconfig['cssls'].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
+-- lspconfig['cssls'].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- })
 
 -- configure tailwindcss server
-lspconfig['tailwindcss'].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
+-- lspconfig['tailwindcss'].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- })
 
 -- configure emmet language server
 lspconfig['emmet_ls'].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte', 'xml' },
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte', 'xml', 'javascript' },
 })
 
 -- configure lua server (with custom settings)
-lspconfig['sumneko_lua'].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = { -- custom settings for Lua
-    Lua = {
-      -- make the language server recognize 'vim' global
-      diagnostics = { globals = {'vim'} },
-      workspace = {
-        -- make language server aware of runtime files
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.stdpath('config') .. '/lua'] = true,
-        },
-      },
-    },
-  },
-})
+-- lspconfig['lua_ls'].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   settings = { -- custom settings for Lua
+--     Lua = {
+--       -- make the language server recognize 'vim' global
+--       diagnostics = { globals = {'vim'} },
+--       workspace = {
+--         -- make language server aware of runtime files
+--         library = {
+--           [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+--           [vim.fn.stdpath('config') .. '/lua'] = true,
+--         },
+--       },
+--     },
+--   },
+-- })
+
 
 -- Java language server setup using lsp_jdtls language server. This service creates a java filetype hook itself and provide default cmd config
 -- In the future would move over to nvim-jdtls plugin instead
