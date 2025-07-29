@@ -10,9 +10,14 @@ for personal use
     - On Monterey, might just work.
     - On earlier version(or Python3.9), `powerline_*` execution scripts are copied to Python3.9 folder. e.g. `/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin`. Update $PATH variable in shell/bash to get tmux `run-shell` command working.
     - Install powerline fonts: `git clone https://github.com/powerline/fonts.git`.
-4. Install fzf (lazy searching)
-5. Install vim plugins.
-6. Checkout vimrc for complete list of vimplug plugins
+5. Install pyenv
+    - Install python version. E.g: `pyenv install 3.10`
+    - Update pip if requires. E.g: `pip3.10 install --upgrade pip`
+    - Install powerline daemon / runner. E.g: `pip3.10 install powerline-status`
+    - Ensure .tmux.conf to be updated with scripts for checking whether powerline-daemon is running or not (robust check to prevent multiple daemons being triggered)
+6. Install fzf (lazy searching)
+7. Install vim plugins.
+8. Checkout vimrc for complete list of vimplug plugins
 
 # Nvim installation instructions - using Vim Plug & Vimscript
 
