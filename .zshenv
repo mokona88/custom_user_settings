@@ -1,0 +1,1 @@
+/Users/thongnguyen/.zprezto/runcoms/zshenv

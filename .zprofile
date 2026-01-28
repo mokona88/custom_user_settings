@@ -1,0 +1,1 @@
+/Users/thongnguyen/ch-bash-profile/.zprofile
