@@ -1,0 +1,21 @@
+#
+# Defines environment variables.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
+
+echo "============================================="
+echo 'Set TEST_ENV to testing(local, prod, staging)'
+export TEST_ENV=testing(local, prod, staging)
+echo "============================================="
+export BROWSERSTACK_USER=thongnguyen_oRWMQz
+export BROWSERSTACK_ACCESSKEY=s2n7GqnnBp1GZm8a2rgv
+echo "Set BROWSERSTACK_USER and BROSERSTACK_ACCESSKEY complete"
+echo "============ Env setup finished ============="
+echo "Run '. ~/env.sh' or 'source ~/.env.sh' with options for loading dev environment setup" 
